@@ -10,6 +10,7 @@ private:
     double z;
 
 public:
+    Ponto();
     Ponto(double x, double y, double z);
 
     double getX();

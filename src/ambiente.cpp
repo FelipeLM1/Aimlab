@@ -3,15 +3,6 @@
 #include "Alvo.h"
 #include "Ponto.h"
 
-namespace gridPadrao
-{
-    double TAMANHO_ALVO = 2.5;
-    double RGB_ALVOS[] = {1, 0.8, 0.9};
-    double COORDENADAS_INICIAL[] = {-20.0,1.0,-30.0};
-}
-
-// criar classe ambiente e salvar as posições dos alvos para depois conseguir desativa-los
-
 void desenharPiso()
 {
     glEnable(GL_TEXTURE_2D);
@@ -44,28 +35,4 @@ void desenharPiso()
     glEnd();
 
     glDisable(GL_TEXTURE_2D);
-}
-
-void gerarGridDeAlvos(int numAlvos, int numLinhas)
-{
-    Alvo *alvo = new Alvo(gridPadrao::TAMANHO_ALVO, gridPadrao::RGB_ALVOS);
-    
-    Ponto *ponto = new Ponto(gridPadrao::COORDENADAS_INICIAL[0],
-    gridPadrao::COORDENADAS_INICIAL[1],gridPadrao::COORDENADAS_INICIAL[2]);
-    
-    double xInicio = ponto->getX();
-    int numAlvosPorLinha = (numAlvos / numLinhas);
-    for (int i = 0; i < numLinhas; i++)
-    {
-        ponto->setX(xInicio);
-        for (int j = 0; j < numAlvosPorLinha; j++)
-        {
-            if(j>0){
-                ponto->setX(ponto->getX() + gridPadrao::TAMANHO_ALVO*2);
-            } 
-        
-            alvo->desenhaAlvo(*ponto, gridPadrao::TAMANHO_ALVO);
-        }
-        ponto->setY(ponto->getY() + gridPadrao::TAMANHO_ALVO*2);
-    }
 }

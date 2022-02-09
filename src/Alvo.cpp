@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <GL/glut.h>
 #include "Ponto.h"
-#include <string>
 using namespace std;
 
 Alvo::Alvo(double tamanho, double rgb[3])
@@ -11,11 +10,30 @@ Alvo::Alvo(double tamanho, double rgb[3])
     this->corRgb[0] = rgb[0];
     this->corRgb[1] = rgb[1];
     this->corRgb[2] = rgb[2];
+    this->corRgb[3] = rgb[3];
+    this->centro = centro;
+    this->ativo = false;
+}
+Alvo::Alvo(){}
+
+Alvo::Alvo(double tamanho, double rgb[3], Ponto centro)
+{
+    this->tamanho = tamanho;
+    this->corRgb[0] = rgb[0];
+    this->corRgb[1] = rgb[1];
+    this->corRgb[2] = rgb[2];
+    this->corRgb[3] = 0;
+    this->centro = centro;
+    this->ativo = false;
 }
 
 void Alvo::desenhaAlvo(Ponto& centro, double tamanho)
 {
-    glColor3f (this->getRed(),this->getGreen(),this->getBlue());
+    
+    //printf("%d",this->getAlfa());
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glColor4f(this->getRed(),this->getGreen(),this->getBlue(), this->getAlfa());
     glBegin(GL_POLYGON);
         glVertex3f(centro.getX()-tamanho/2, centro.getY()-tamanho/2, centro.getZ()-tamanho/2);
         glVertex3f(centro.getX()+tamanho/2, centro.getY()-tamanho/2, centro.getZ()-tamanho/2);
@@ -34,6 +52,8 @@ void Alvo::desenhaAlvo(Ponto& centro, double tamanho)
         glVertex3f(centro.getX()-tamanho/2, centro.getY()+tamanho/2, centro.getZ()-tamanho/2);
         glVertex3f(centro.getX()-tamanho/2, centro.getY()+tamanho/2, centro.getZ()+tamanho/2);
     glEnd();
+
+    glDisable(GL_BLEND);
 
 }
 
@@ -55,6 +75,20 @@ double Alvo::getGreen()
 double Alvo::getBlue()
 {
     return this->corRgb[2];
+}
+
+double Alvo::getAlfa(){
+    return this->corRgb[3];
+}
+
+Ponto Alvo::getCentro(){
+    return this->centro;
+}
+
+
+
+bool Alvo::isAtivo(){
+    return this->ativo;
 }
 
 void Alvo::setRGB(double red, double green, double blue){
@@ -84,4 +118,19 @@ void Alvo::setBlue(double blue)
 {
     if (blue < 1 && blue >= 0)
         this->corRgb[2] = blue;
+}
+
+void Alvo::setAlfa(double alfa){
+    this->corRgb[3]=alfa;
+}
+
+
+
+void Alvo::setCentro(Ponto centro){
+    this->centro = centro;
+}
+
+void Alvo::setAtivo(bool ativo){
+    this->ativo = ativo;
+    ativo ? this->setAlfa(1.0) : this->setAlfa(0);
 }

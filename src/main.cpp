@@ -4,22 +4,21 @@
 #include "Ponto.h"
 #include "camera.h"
 #include "iluminacao.h"
+#include "jogo.h"
 
 const int width = 16 * 50;
 const int height = 9 * 50;
 
 void display(void)
 {
-
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glLoadIdentity();
    glColor3f (1.0,1.0,1.0);
    camera();
    desenharPiso();
-   gerarGridDeAlvos(8, 2);
+   iniciarJogo(50, 5);
    gerarIluminacao();
    glutSwapBuffers();
-
 }
 
 void init(void)
@@ -53,8 +52,7 @@ int main(int argc, char **argv)
     glutInit(&argc,argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(width, height);
-    glutCreateWindow("AimBot");
-
+    glutCreateWindow("Aimlab");
     init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
