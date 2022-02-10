@@ -18,8 +18,6 @@ GridAlvos gridAlvos = GridAlvos();
 GridAlvos *iniciarJogo(int numAlvos, int numLinha)
 {
     gridAlvos = gridAlvos.criarGrid(numAlvos, numLinha);
-
-    iniciarRegras(gridAlvos);
     return &gridAlvos;
 }
 
@@ -27,11 +25,6 @@ void rodarJogo(GridAlvos grid)
 {
     gridAlvos = grid;
     gridAlvos.atualizaGrid();
-}
-
-void iniciarRegras(GridAlvos gridAlvo)
-{
-    gerarAlvoAleatorio(gridAlvo);
 }
 
 void click(int b, int estado, int x, int y)
@@ -64,9 +57,9 @@ void atirar(int x, int y)
 }
 
 void atingirAlvo()
-{   
+{
     Ponto posicaoAlvoAtingido = gridAlvos.getPosicaoAlvoAtivo();
-    
+
     gridAlvos.desativaAlvo(posicaoAlvoAtingido.getX(), posicaoAlvoAtingido.getY());
     ativaNovoAlvo(posicaoAlvoAtingido.getX(), posicaoAlvoAtingido.getY());
 }
@@ -75,14 +68,14 @@ void ativaNovoAlvo(int iAntes, int jAntes)
 {
     int i = rand() % gridAlvos.getNumLinhas();
     int j = rand() % gridAlvos.getNumColunas();
+    while (i == iAntes && j == jAntes)
+    {
+        int i = rand() % gridAlvos.getNumLinhas();
+        int j = rand() % gridAlvos.getNumColunas();
+    }
+
     Alvo novoAlvo = gridAlvos.getAlvos()[i][j];
     novoAlvo.setAtivo(true);
     gridAlvos.setAlvoPosicao(&novoAlvo, i, j);
     gridAlvos.setPosicaoAlvoAtivo(Ponto(i, j, 0));
-}
-
-void gerarAlvoAleatorio(GridAlvos gridAlvo)
-{
-    Alvo alvo = gridAlvo.getAlvos()[2][2];
-    gridAlvo.setAlvoPosicao(&alvo, 2, 2);
 }
