@@ -14,7 +14,7 @@ Alvo::Alvo(double tamanho, double rgb[3])
     this->centro = centro;
     this->ativo = false;
 }
-Alvo::Alvo(){}
+Alvo::Alvo() {}
 
 Alvo::Alvo(double tamanho, double rgb[3], Ponto centro)
 {
@@ -27,34 +27,32 @@ Alvo::Alvo(double tamanho, double rgb[3], Ponto centro)
     this->ativo = false;
 }
 
-void Alvo::desenhaAlvo(Ponto& centro, double tamanho)
+void Alvo::desenhaAlvo(Ponto &centro, double tamanho)
 {
-    
-    //printf("%d",this->getAlfa());
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(this->getRed(),this->getGreen(),this->getBlue(), this->getAlfa());
+    glColor4f(this->getRed(), this->getGreen(), this->getBlue(), this->getAlfa());
     glBegin(GL_POLYGON);
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()-tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()-tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()+tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()+tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()-tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()-tamanho/2, centro.getZ()+tamanho/2);
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()-tamanho/2, centro.getZ()+tamanho/2);
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()+tamanho/2, centro.getZ()+tamanho/2);    
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()+tamanho/2, centro.getZ()+tamanho/2);  
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()-tamanho/2, centro.getZ()+tamanho/2); 
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()+tamanho/2, centro.getZ()-tamanho/2); 
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()+tamanho/2, centro.getZ()+tamanho/2); 
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()-tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()+tamanho/2, centro.getY()-tamanho/2, centro.getZ()+tamanho/2);
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()+tamanho/2, centro.getZ()-tamanho/2);
-        glVertex3f(centro.getX()-tamanho/2, centro.getY()+tamanho/2, centro.getZ()+tamanho/2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() + tamanho / 2, centro.getY() - tamanho / 2, centro.getZ() + tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() - tamanho / 2);
+    glVertex3f(centro.getX() - tamanho / 2, centro.getY() + tamanho / 2, centro.getZ() + tamanho / 2);
     glEnd();
 
     glDisable(GL_BLEND);
-
 }
 
 double Alvo::getTamanho()
@@ -77,21 +75,23 @@ double Alvo::getBlue()
     return this->corRgb[2];
 }
 
-double Alvo::getAlfa(){
+double Alvo::getAlfa()
+{
     return this->corRgb[3];
 }
 
-Ponto Alvo::getCentro(){
+Ponto Alvo::getCentro()
+{
     return this->centro;
 }
 
-
-
-bool Alvo::isAtivo(){
+bool Alvo::isAtivo()
+{
     return this->ativo;
 }
 
-void Alvo::setRGB(double red, double green, double blue){
+void Alvo::setRGB(double red, double green, double blue)
+{
     this->setRed(red);
     this->setGreen(green);
     this->setBlue(blue);
@@ -120,17 +120,18 @@ void Alvo::setBlue(double blue)
         this->corRgb[2] = blue;
 }
 
-void Alvo::setAlfa(double alfa){
-    this->corRgb[3]=alfa;
+void Alvo::setAlfa(double alfa)
+{
+    this->corRgb[3] = alfa;
 }
 
-
-
-void Alvo::setCentro(Ponto centro){
+void Alvo::setCentro(Ponto centro)
+{
     this->centro = centro;
 }
 
-void Alvo::setAtivo(bool ativo){
+void Alvo::setAtivo(bool ativo)
+{
     this->ativo = ativo;
     ativo ? this->setAlfa(1.0) : this->setAlfa(0);
 }
