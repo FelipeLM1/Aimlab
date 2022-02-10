@@ -27,10 +27,10 @@ void display(void)
 
 void init(void)
 {
-    /* select clearing color 	*/
+    
     glClearColor(0.0, 0.0, 0.0, 0.0);
     g = iniciarJogo(50, 5);
-    /* initialize viewing values  */
+    
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
