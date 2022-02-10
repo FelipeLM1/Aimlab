@@ -1,7 +1,10 @@
 #include <GL/glut.h>
 #include "ambiente.h"
 #include "Alvo.h"
+#include <stdio.h>
 #include "Ponto.h"
+#include <iostream>
+
 
 void desenharPiso()
 {
@@ -36,3 +39,4 @@ void desenharPiso()
 
     glDisable(GL_TEXTURE_2D);
 }
+
