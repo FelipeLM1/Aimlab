@@ -15,6 +15,7 @@ private:
 public:
     GridAlvos();
     GridAlvos(std::vector<std::vector<Alvo>> alvos);
+    ~GridAlvos();
     int getNumLinhas();
     void setNumLinhas(int setNumLinhas);
 

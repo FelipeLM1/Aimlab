@@ -17,6 +17,7 @@ public:
   Alvo();
   Alvo(double tamanho, double rgb[3]);
   Alvo(double tamanho, double rgb[3], Ponto centro);
+  ~Alvo();
   void desenhaAlvo(Ponto &centro, double tamanho);
 
   // getters

@@ -4,7 +4,6 @@
 #define FPS 60
 #define TO_RADIANS 3.14/180.0
 
-//width and height of the window ( Aspect ratio 16:9 )
 const int width = 16*50;
 const int height = 9*50;
 
@@ -27,18 +26,18 @@ void timer(int)
 
 void passive_motion(int x,int y)
 {
-    /* two variables to store X and Y coordinates, as observed from the center
-      of the window
-    */
     int dev_x,dev_y;
     dev_x = (width/2)-x;
     dev_y = (height/2)-y;
 
-    /* apply the changes to pitch and yaw*/
     yaw+=(float)dev_x/10.0;
     pitch+=(float)dev_y/10.0;
 }
 
+/**
+ * @brief atualiza os parametros da camera
+ * 
+ */
 void camera()
 {
 
@@ -77,6 +76,13 @@ void camera()
     glTranslatef(-camX,0.0,-camZ);
 }
 
+/**
+ * @brief verifica qual movimento deve ser feito, dependendo da tecla acionada
+ * 
+ * @param key 
+ * @param x 
+ * @param y 
+ */
 void keyboard(unsigned char key,int x,int y)
 {
     switch(key)

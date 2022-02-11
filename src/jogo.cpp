@@ -1,6 +1,4 @@
 #include "GridAlvos.h"
-#include <chrono>
-#include <thread>
 #include <random>
 #include <iostream>
 #include "jogo.h"
@@ -15,18 +13,38 @@ enum botaoMouse
 
 GridAlvos gridAlvos = GridAlvos();
 
+/**
+ * @brief inicia o jogo criando uma grid de alvos
+ * 
+ * @param numAlvos numero de alvos na grid
+ * @param numLinha numero de linhas da grid
+ * @return GridAlvos* 
+ */
 GridAlvos *iniciarJogo(int numAlvos, int numLinha)
 {
     gridAlvos = gridAlvos.criarGrid(numAlvos, numLinha);
     return &gridAlvos;
 }
 
+/**
+ * @brief atualiza o jogo redesenhando a grid
+ * 
+ * @param grid 
+ */
 void rodarJogo(GridAlvos grid)
 {
     gridAlvos = grid;
     gridAlvos.atualizaGrid();
 }
-
+/**
+ * @brief verifica se o clique dado foi no botao esquerdo, nesse caso
+ * , chama a função atirar
+ * 
+ * @param b botão acionado
+ * @param estado 
+ * @param x posicao x
+ * @param y posicao y
+ */
 void click(int b, int estado, int x, int y)
 {
 
@@ -36,6 +54,13 @@ void click(int b, int estado, int x, int y)
     }
 }
 
+/**
+ * @brief verifica se o tiro dado acertou algum alvo, se acertar , chama a funcao
+ * atingir alvo.
+ * 
+ * @param x 
+ * @param y 
+ */
 void atirar(int x, int y)
 {
     float pixel[4] = {0};
@@ -56,6 +81,10 @@ void atirar(int x, int y)
     }
 }
 
+/**
+ * @brief desativa o alvo atingido e ativa um alvo aleatorio
+ * 
+ */
 void atingirAlvo()
 {
     Ponto posicaoAlvoAtingido = gridAlvos.getPosicaoAlvoAtivo();
@@ -64,6 +93,13 @@ void atingirAlvo()
     ativaNovoAlvo(posicaoAlvoAtingido.getX(), posicaoAlvoAtingido.getY());
 }
 
+/**
+ * @brief sorteia um alvo do grid para ativá-lo, o novo alvo é diferente do 
+ * que acabou de ser atingido
+ * 
+ * @param iAntes linha do alvo que acabou de ser atingido
+ * @param jAntes coluna do alvo que acabou de ser atingido
+ */
 void ativaNovoAlvo(int iAntes, int jAntes)
 {
     int i = rand() % gridAlvos.getNumLinhas();

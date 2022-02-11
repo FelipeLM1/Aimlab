@@ -1,8 +1,9 @@
 #include "Ponto.h"
 #include <GL/glut.h>
 
-Ponto::Ponto(){ };
+Ponto::Ponto(){};
 
+Ponto::~Ponto(){};
 Ponto::Ponto(double x, double y, double z)
 {
     this->x = x;

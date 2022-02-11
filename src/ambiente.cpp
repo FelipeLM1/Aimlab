@@ -1,11 +1,12 @@
 #include <GL/glut.h>
 #include "ambiente.h"
 #include "Alvo.h"
-#include <stdio.h>
 #include "Ponto.h"
-#include <iostream>
 
-
+/**
+ * @brief Desenha o piso do cenario.
+ * 
+ */
 void desenharPiso()
 {
     glEnable(GL_TEXTURE_2D);

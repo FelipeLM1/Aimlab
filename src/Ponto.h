@@ -12,6 +12,7 @@ private:
 public:
     Ponto();
     Ponto(double x, double y, double z);
+    ~Ponto();
 
     double getX();
     double getY();

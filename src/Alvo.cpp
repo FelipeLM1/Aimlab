@@ -1,5 +1,4 @@
 #include "Alvo.h"
-#include <stdio.h>
 #include <GL/glut.h>
 #include "Ponto.h"
 using namespace std;
@@ -15,6 +14,7 @@ Alvo::Alvo(double tamanho, double rgb[3])
     this->ativo = false;
 }
 Alvo::Alvo() {}
+Alvo::~Alvo(){}; 
 
 Alvo::Alvo(double tamanho, double rgb[3], Ponto centro)
 {
@@ -26,10 +26,14 @@ Alvo::Alvo(double tamanho, double rgb[3], Ponto centro)
     this->centro = centro;
     this->ativo = false;
 }
-
+/**
+ * @brief desenha um cubo com posição e tamanho definido nos parametros.
+ * 
+ * @param centro posicao do centro do alvo
+ * @param tamanho tamanho do alvo
+ */
 void Alvo::desenhaAlvo(Ponto &centro, double tamanho)
 {
-
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glColor4f(this->getRed(), this->getGreen(), this->getBlue(), this->getAlfa());

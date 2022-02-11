@@ -5,12 +5,10 @@
 #include "camera.h"
 #include "iluminacao.h"
 #include "jogo.h"
-#include <iostream>
 
 const int width = 16 * 50;
 const int height = 9 * 50;
 
-int exec = 0;
 GridAlvos *g;
 void display(void)
 {
